@@ -1,59 +1,127 @@
-# GlobetrotterClient
+# 🌍 Globetrotter Challenge
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Globetrotter Challenge is an interactive web application that tests users' knowledge of world geography through an engaging quiz format. Players are presented with clues about different locations around the world and must guess the correct destination.
 
-## Development server
+## 📋 Features
 
-To start a local development server, run:
+- **Interactive Geography Quiz**: Test your knowledge with challenging geography questions
+- **User Authentication**: Register to track your progress and stats
+- **Game Statistics**: View your performance metrics (correct answers, incorrect answers, total games played)
+- **Challenge Friends**: Create custom challenges and share them with friends
+- **Leaderboard**: Compare your performance with other players
 
-```bash
-ng serve
-```
+## 🛠️ Technology Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Frontend**: Angular 19
+- **UI Components**: Angular Material
+- **State Management**: RxJS
+- **Styling**: SCSS
+- **Animations**: Angular Animations
 
-## Code scaffolding
+## 🚀 Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js (v18 or higher)
+- npm (v8 or higher)
+- Angular CLI (v19 or higher)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Installation
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. **Clone the repository**
 
 ```bash
-ng test
+git clone https://github.com/yourusername/globetrotter-client.git
+cd globetrotter-client
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+2. **Install dependencies**
 
 ```bash
-ng e2e
+npm install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+3. **Configure environment**
 
-## Additional Resources
+The application uses environment files to manage API URLs for different environments. These are located in `src/environments/`.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `environment.ts`: Default environment configuration
+- `environment.development.ts`: Development environment configuration
+- `environment.production.ts`: Production environment configuration
+
+Update the API URLs in these files to point to your backend service:
+
+```typescript
+// src/environments/environment.ts
+export const environment = {
+  production: false,
+  apiUrl: 'https://your-api-url.com/api'
+};
+```
+
+4. **Start the development server**
+
+```bash
+npm start
+```
+
+The application will be available at `http://localhost:4200/`.
+
+### Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## 📱 Application Structure
+
+- **Components**
+  - `HomeComponent`: Landing page with app introduction
+  - `GameComponent`: Main game interface where users answer geography questions
+  - `GameResultComponent`: Displays results after answering a question
+  - `UserRegistrationComponent`: User registration form
+  - `ChallengeComponent`: Interface for creating and accepting challenges
+  - `LeaderboardComponent`: Displays top players and scores
+
+- **Services**
+  - `ApiService`: Handles all API communication
+  - `AuthService`: Manages user authentication and session
+  - `GameService`: Manages game state and logic
+
+- **Models**
+  - `User`: User profile and statistics
+  - `Game`: Game questions and responses
+  - `Destination`: Geographic location data
+
+## 🔄 API Integration
+
+The application communicates with a backend API for:
+- User registration and authentication
+- Fetching game questions
+- Submitting answers
+- Creating and joining challenges
+- Retrieving leaderboard data
+
+## 🧪 Running Tests
+
+```bash
+npm test
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
