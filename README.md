@@ -2,6 +2,9 @@
 
 Globetrotter Challenge is an interactive web application that tests users' knowledge of world geography through an engaging quiz format. Players are presented with clues about different locations around the world and must guess the correct destination.
 
+### Live Url: https://globetrotter-client-production.up.railway.app/
+### Backend: https://github.com/shadan-asad/globetrotter-server
+
 ## 📋 Features
 
 - **Interactive Geography Quiz**: Test your knowledge with challenging geography questions
