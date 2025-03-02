@@ -1,0 +1,45 @@
+<div class="registration-container">
+  <div class="card">
+    <h2 class="text-center">Register to Play</h2>
+    <p class="text-center">Enter a username to save your progress and challenge friends</p>
+    
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          class="form-control" 
+          [(ngModel)]="username" 
+          placeholder="Enter a username (min. 3 characters)"
+          [disabled]="isLoading"
+          required
+          minlength="3"
+          maxlength="20"
+        >
+      </div>
+      
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+          <span *ngIf="isLoading">Registering...</span>
+          <span *ngIf="!isLoading">Register</span>
+        </button>
+      </div>
+    </form>
+    
+    <div class="info-text mt-3">
+      <p>By registering, you'll be able to:</p>
+      <ul>
+        <li>Save your game progress</li>
+        <li>Track your score</li>
+        <li>Challenge friends to play</li>
+        <li>Appear on the leaderboard</li>
+      </ul>
+    </div>
+  </div>
+</div> 

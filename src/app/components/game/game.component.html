@@ -1,0 +1,82 @@
+<div class="game-container">
+  <div class="card game-card">
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Loading...</p>
+    </div>
+    
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+      <button class="btn btn-primary" (click)="loadNewQuestion()">Try Again</button>
+    </div>
+    
+    <div *ngIf="!isLoading && !error">
+      <!-- Question Section -->
+      <div *ngIf="question && !result" class="question-section">
+        <h2>Where in the world is this?</h2>
+        
+        <div class="clues-container">
+          <div *ngFor="let clue of question.clues; let i = index" class="clue-card">
+            <div class="clue-number">Clue {{ i + 1 }}</div>
+            <p>{{ clue }}</p>
+          </div>
+        </div>
+        
+        <div class="options-container">
+          <button 
+            *ngFor="let option of question.options" 
+            class="option-btn" 
+            [class.selected]="isOptionSelected(option)"
+            (click)="selectAnswer(option)"
+          >
+            {{ option }}
+          </button>
+        </div>
+        
+        <div class="action-buttons">
+          <button 
+            class="btn btn-primary" 
+            [disabled]="!selectedAnswer" 
+            (click)="submitAnswer()"
+          >
+            Submit Answer
+          </button>
+        </div>
+        
+        <div *ngIf="!authService.isLoggedIn()" class="register-prompt">
+          <p>Want to save your progress? <a (click)="goToRegister()">Register now</a></p>
+        </div>
+      </div>
+      
+      <!-- Result Section -->
+      <div *ngIf="result" class="result-section">
+        <app-game-result 
+          [result]="result" 
+          [isLoggedIn]="authService.isLoggedIn()" 
+          (playAgain)="playAgain()">
+        </app-game-result>
+      </div>
+    </div>
+  </div>
+  
+  <!-- User Stats Card -->
+  <div *ngIf="authService.isLoggedIn()" class="card stats-card">
+    <h3>Your Stats</h3>
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-value">{{ authService.getCurrentUser()?.gameStats?.correct || 0 }}</div>
+        <div class="stat-label">Correct</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-value">{{ authService.getCurrentUser()?.gameStats?.incorrect || 0 }}</div>
+        <div class="stat-label">Incorrect</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-value">{{ authService.getCurrentUser()?.gameStats?.totalPlayed || 0 }}</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+  </div>
+</div> 

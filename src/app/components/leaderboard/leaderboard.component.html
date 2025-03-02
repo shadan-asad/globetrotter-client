@@ -1,0 +1,50 @@
+<div class="leaderboard-container">
+  <div class="card">
+    <h2>Globetrotter Leaderboard</h2>
+    <p class="subtitle">See how you rank against other players!</p>
+    
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Loading leaderboard...</p>
+    </div>
+    
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+    
+    <div *ngIf="!isLoading && !error" class="leaderboard-content">
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Correct</th>
+            <th>Total</th>
+            <th>Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of leaderboardUsers; let i = index" [class.current-user]="isCurrentUser(user.username)">
+            <td class="rank">{{ i + 1 }}</td>
+            <td class="username">
+              {{ user.username }}
+              <span *ngIf="isCurrentUser(user.username)" class="current-user-badge">You</span>
+            </td>
+            <td class="correct">{{ user.gameStats.correct }}</td>
+            <td class="total">{{ user.gameStats.totalPlayed }}</td>
+            <td class="accuracy">
+              <div class="accuracy-bar">
+                <div class="accuracy-fill" [style.width.%]="getAccuracyPercentage(user)"></div>
+              </div>
+              <span class="accuracy-text">{{ getAccuracyPercentage(user) }}%</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div *ngIf="!authService.isLoggedIn()" class="register-prompt">
+        <p>Want to appear on the leaderboard? <a routerLink="/register">Register now</a></p>
+      </div>
+    </div>
+  </div>
+</div> 

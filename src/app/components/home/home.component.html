@@ -1,0 +1,49 @@
+<div class="home-container">
+  <div class="hero">
+    <h1>Welcome to Globetrotter Challenge!</h1>
+    <p class="subtitle">The Ultimate Travel Guessing Game</p>
+    
+    <div class="hero-content">
+      <p>Test your geography knowledge with cryptic clues about famous destinations around the world.</p>
+      <p>Guess correctly to unlock fun facts and trivia about each location!</p>
+      
+      <div class="cta-buttons">
+        <a routerLink="/game" class="btn btn-primary">Start Playing</a>
+        
+        <ng-container *ngIf="!authService.isLoggedIn()">
+          <a routerLink="/register" class="btn btn-secondary">Register to Save Progress</a>
+        </ng-container>
+        
+        <ng-container *ngIf="authService.isLoggedIn()">
+          <a routerLink="/challenge" class="btn btn-secondary">Challenge Friends</a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🧩</div>
+      <h3>Cryptic Clues</h3>
+      <p>Solve challenging clues about destinations around the world.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Test Your Knowledge</h3>
+      <p>Choose from multiple possible answers and see how well you know the world.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h3>Track Your Progress</h3>
+      <p>Register to save your score and compete with friends.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3>Challenge Friends</h3>
+      <p>Share the game with friends and see who knows more about the world.</p>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,112 @@
+<div class="challenge-container">
+  <div class="card">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Loading...</p>
+    </div>
+    
+    <!-- Error Message -->
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+    
+    <!-- Join Challenge View -->
+    <div *ngIf="challengeId && inviterInfo && !isLoading" class="join-challenge">
+      <h2>You've been challenged!</h2>
+      
+      <div class="inviter-info">
+        <p><strong>{{ inviterInfo.creatorUsername }}</strong> has challenged you to a game of Globetrotter!</p>
+        
+        <div class="stats-card">
+          <h3>{{ inviterInfo.creatorUsername }}'s Stats</h3>
+          <div class="stats-container">
+            <div class="stat-item">
+              <div class="stat-value">{{ inviterInfo.creatorStats.correct }}</div>
+              <div class="stat-label">Correct</div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-value">{{ inviterInfo.creatorStats.incorrect }}</div>
+              <div class="stat-label">Incorrect</div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-value">{{ inviterInfo.creatorStats.totalPlayed }}</div>
+              <div class="stat-label">Total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="joinChallenge()">Accept Challenge</button>
+      </div>
+    </div>
+    
+    <!-- Create Challenge View -->
+    <div *ngIf="!challengeId && !showRegistration && !isLoading && !challengeLink" class="create-challenge">
+      <h2>Challenge Your Friends</h2>
+      <p>Create a challenge link to share with your friends and see who knows more about the world!</p>
+      
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="createChallenge()">Create Challenge</button>
+      </div>
+    </div>
+    
+    <!-- Registration Form -->
+    <div *ngIf="showRegistration && !isLoading" class="registration-form">
+      <h2>Register to {{ challengeId ? 'Join' : 'Create' }} Challenge</h2>
+      <p>Enter a username to save your progress and challenge friends</p>
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          class="form-control" 
+          [(ngModel)]="username" 
+          placeholder="Enter a username (min. 3 characters)"
+          [disabled]="isLoading"
+          required
+          minlength="3"
+          maxlength="20"
+        >
+      </div>
+      
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="registerAndCreate()" [disabled]="isLoading">
+          <span *ngIf="isLoading">Processing...</span>
+          <span *ngIf="!isLoading">Register & {{ challengeId ? 'Join' : 'Create' }}</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Challenge Link View -->
+    <div *ngIf="challengeLink && !isLoading" class="challenge-link">
+      <h2>Challenge Created!</h2>
+      <p>Share this link with your friends to challenge them:</p>
+      
+      <div class="link-container">
+        <input 
+          type="text" 
+          class="form-control" 
+          [value]="challengeLink.inviteUrl" 
+          readonly
+        >
+        <button class="btn btn-secondary" (click)="copyToClipboard(challengeLink.inviteUrl)">
+          Copy Link
+        </button>
+      </div>
+      
+      <div class="share-image">
+        <img [src]="challengeLink.imageUrl" alt="Challenge Share Image">
+      </div>
+      
+      <div class="action-buttons">
+        <button class="btn btn-primary" routerLink="/game">Play Game</button>
+      </div>
+    </div>
+  </div>
+</div> 

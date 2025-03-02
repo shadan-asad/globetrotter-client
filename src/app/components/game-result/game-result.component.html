@@ -1,0 +1,25 @@
+<div class="result-container" *ngIf="result">
+  <div class="result-header" [class.correct]="result.correct" [class.incorrect]="!result.correct">
+    <h2 *ngIf="result.correct">Correct! 🎉</h2>
+    <h2 *ngIf="!result.correct">Oops! Not quite right 😢</h2>
+  </div>
+  
+  <div class="result-content">
+    <p class="correct-answer">
+      <strong>The correct answer was:</strong> {{ result.correctAnswer }}
+    </p>
+    
+    <div class="fun-fact-container">
+      <h3>Fun Fact</h3>
+      <p>{{ result.funFact }}</p>
+    </div>
+  </div>
+  
+  <div class="action-buttons">
+    <button class="btn btn-primary" (click)="onPlayAgain()">Play Again</button>
+    
+    <button *ngIf="isLoggedIn" class="btn btn-secondary" routerLink="/challenge">
+      Challenge Friends
+    </button>
+  </div>
+</div> 
