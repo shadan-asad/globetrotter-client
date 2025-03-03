@@ -34,7 +34,7 @@ Globetrotter Challenge is an interactive web application that tests users' knowl
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/globetrotter-client.git
+git clone https://github.com/shadan-asad/globetrotter-client.git
 cd globetrotter-client
 ```
 
